@@ -13,8 +13,8 @@ import java.util.Queue;
  * 固定容量阻塞式消息队列
  */
 public class MessageQueue {
-    private List<Message> messages;
-    private int capacity;
+    private List<Message> messages; // 只涉及多线程读不需要标记成volatile的
+    private int capacity; // 只涉及多线程读不需要标记成volatile的
 
     public MessageQueue(int capacity) {
         this.messages = new ArrayList<>();
@@ -57,7 +57,7 @@ public class MessageQueue {
     @AllArgsConstructor
     @NoArgsConstructor
     private static class Message {
-        private int id;
-        private Object value;
+        private volatile int id;
+        private volatile Object value;
     }
 }

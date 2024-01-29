@@ -4,14 +4,14 @@ package org.howard1209a.juc;
  * 线程安全的多线程数据容器
  */
 public class GuardedObject {
-    private Object data;
+    private volatile Object data;
 
     /**
      * 写入数据
      */
     public synchronized void set(Object data) {
         this.data = data;
-        this.notify();
+        this.notifyAll();
     }
 
     /**
